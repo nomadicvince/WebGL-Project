@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <title>Babylon JS Experiment</title>
+    <!--- link to the last version of babylon --->
+    <script src="js/babylon.js"></script>
+    <style>
+        html, body {
+            overflow: hidden;
+            width   : 100%;
+            height  : 100%;
+            margin  : 0;
+            padding : 0;
+        }
+
+        #renderCanvas {
+            width   : 100%;
+            height  : 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            // get the canvas DOM element
+            var canvas = document.getElementById('renderCanvas');
+
+            // load the 3D engine
+            var engine = new BABYLON.Engine(canvas, true);
+
+            // createScene function that creates and return the scene
+            var createScene = function(){
+                // create a basic BJS Scene object
+                var scene = new BABYLON.Scene(engine);
+                scene.clearColor = new BABYLON.Color3(.25, .181, .240);
+
+                // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+
+                // target the camera to scene origin
+                camera.setTarget(BABYLON.Vector3.Zero());
+
+                // attach the camera to the canvas
+                camera.attachControl(canvas, false);
+
+
+BABYLON.SceneLoader.Load("", "realestate.babylon", engine, function(newScene){
+            if (!newScene.activeCamera) {
+                 newScene.activeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 5,-10), newScene);
+            }
+                newScene.executeWhenReady(function() {
+                    newScene.activeCamera.attachControl(canvas);
+                    
+                    // Once the scene is loaded, just register a render loop to render it
+                     engine.runRenderLoop(function() {
+                         newScene.render();
+                     });
+                });
+            });  
+
+                // return the created scene
+                return scene;
+            };
+
+            // call the createScene function
+            var scene = createScene();
+
+            // run the render loop
+            engine.runRenderLoop(function(){
+                scene.render();
+            });
+
+            // the canvas/window resize event handler
+            window.addEventListener('resize', function(){
+                engine.resize();
+            });
+        });
+    </script>
+</body>
+</html>
