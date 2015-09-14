@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Real Estate WebGL Applications</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            
+            @font-face {
+                font-family: 'hattori_hanzolight';
+                src: url('fonts/Hattori_Hanzo-webfont.eot');
+                src: url('fonts/Hattori_Hanzo-webfont.eot?#iefix') format('embedded-opentype'),
+                     url('fonts/Hattori_Hanzo-webfont.woff') format('woff'),
+                     url('fonts/Hattori_Hanzo-webfont.ttf') format('truetype'),
+                     url('fonts/Hattori_Hanzo-webfont.svg#hattori_hanzolight') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            
             body {
                 background: url('img/livingroom.png') no-repeat;
                 background-size: cover;
+                font-family: 'hattori_hanzolight';
             }
             
-            #content {
+            .content {
                 margin: 46px auto;
                 background: rgba(255, 255, 255, .6);
                 border-radius: 6px;
@@ -23,13 +31,36 @@ and open the template in the editor.
                 height: 400px;
             }
             
+            #container {
+                margin: 40px 30px 50px 30px;
+                padding-top: 20px;
+            }
+            
+            #word {
+                float: left;
+                width: 46%;
+            }
+            
+            .clearfix {
+                clear: both;
+            }
+            
         </style>
     </head>
     <body>
-        <div id="content">
-            <p><a href="babylon/">Babylon.js</a></p>
-            <p><a href="three/">Three.js</a></p>
-            
+        <div class="content">
+            <div id="container">
+                <h1>WebGL Real Estate Application</h1>
+                <p>This application was originally create in Blender and exported using the WebGL libraries Three.js and Babylon.js.</p>
+                <div id="word">
+                    <h2><a href="babylon/">Babylon.js</a></h2>
+                    <p>Created with Babylon.js</p>
+                </div>
+                <div id="word">
+                    <h2><a href="three/">Three.js</a></h2>
+                    <p>Created with Three.js</p>
+                </div><br class="clearfix">
+            </div>
         </div>
     </body>
 </html>
