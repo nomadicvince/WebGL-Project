@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <head>
     <title>3D Real Estate Application | Babylon.js version</title>
-    <!--- link to the last version of babylon --->
-    <script src="js/babylon.js"></script>
+    
+    <script src="http://cdn.babylonjs.com/2-1/babylon.js"></script>
     <style>
         html, body {
             overflow: hidden;
@@ -36,7 +36,7 @@
                 scene.clearColor = new BABYLON.Color3(.25, .181, .240);
 
                 // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 0,13), scene);
 
                 // target the camera to scene origin
                 camera.setTarget(BABYLON.Vector3.Zero());
@@ -47,7 +47,8 @@
 
 BABYLON.SceneLoader.Load("", "realestate.babylon", engine, function(newScene){
             if (!newScene.activeCamera) {
-                 newScene.activeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(0, 5,-10), newScene);
+                 newScene.activeCamera = new BABYLON.FreeCamera("Camera", new BABYLON.Vector3(3, 2,0), newScene);
+             
             }
                 newScene.executeWhenReady(function() {
                     newScene.activeCamera.attachControl(canvas);
